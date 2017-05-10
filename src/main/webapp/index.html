@@ -376,7 +376,7 @@
 						},
 						xAxis: {
 							type: 'category',
-							name: 'x',
+							name: 'time',
 							data: data.x
 						},
 						grid: {
@@ -394,6 +394,10 @@
 							data: data.y
 						}
 					};
+					console.log(id);
+					if(id=='ZEC--Diff' ||id=='ZEC--Hash'){
+						option.yAxis.name = 'value (K)'
+					}
 					myChart.setOption(option);
 				}
 			})
