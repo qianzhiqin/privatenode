@@ -50,6 +50,9 @@ public class CoinController {
 
         try {
             String sql = "SELECT coin ,time ,diff ,hash FROM coin WHERE coin='" + coin + "'  ORDER BY TIME DESC LIMIT 300;";
+            if("zec".equals(coin)){
+                sql= "SELECT coin ,time ,diff/1000 as diff ,hash/1000 as hash FROM coin WHERE coin='" + coin + "'  ORDER BY TIME DESC LIMIT 300;";
+            }
             ResultSet rs = MysqlHelper.executeQuery(sql, null);
             while (rs.next()) {
                 String time = rs.getString(2);
