@@ -322,6 +322,7 @@
 		<script src="assets/js/ace/ace.widget-on-reload.js"></script>
 		<script src="assets/js/ace/ace.searchbox-autocomplete.js"></script>
 		<script src="assets/js/echarts.min.js"></script>
+		<script src="assets/js/theme/shine.js"></script>
 
 		<script>
 			$(function() {
@@ -350,7 +351,7 @@
 				},"json");
 
 				function chartTool(id,data){
-					var myChart = echarts.init(document.getElementById(id));
+					var myChart = echarts.init(document.getElementById(id),'shine');
 					var option = {
 						animation:false,
 
@@ -360,6 +361,17 @@
 								console.log(params[0])
 								return 'Date: '+params[0].name + '<br />Val: ' + params[0].data;
 							}
+						},
+						toolbox: {
+							feature: {
+								dataZoom: {
+									yAxisIndex: 'none'
+								},
+								restore: {},
+								saveAsImage: {}
+							},
+							left:'80%'
+
 						},
 						dataZoom : {
 							show : true,
