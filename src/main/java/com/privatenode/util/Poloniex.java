@@ -24,7 +24,7 @@ public class Poloniex {
                     .timeout(30000).followRedirects(true).get();
             Elements elements = doc.select("body");
             String json = elements.get(0).childNode(0).toString();
-            System.out.println(elements.get(0).childNode(0));
+//            System.out.println(elements.get(0).childNode(0));
             result = parseJson(json);
         } catch (IOException e) {
             e.printStackTrace();
@@ -42,7 +42,7 @@ public class Poloniex {
 
     public static String geturl(String coin, String unixtime) {
         String url = "https://poloniex.com/public?command=returnChartData&currencyPair=USDT_" + coin + "&start=" + unixtime + "&end=9999999999&period=300";
-        System.out.println(url);
+//        System.out.println(url);
         return url;
     }
 
