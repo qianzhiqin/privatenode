@@ -65,8 +65,7 @@ public class Poloniex {
         String zec = geturl("ZEC", unixtime);
         String etc = geturl("ETC", unixtime);
         String eth = geturl("ETH", unixtime);
-        getValue(zec);
-        map.put("zec", Double.parseDouble(getValue(etc)) * huilv + "");
+        map.put("zec", Double.parseDouble(getValue(zec)) * huilv + "");
         map.put("etc", Double.parseDouble(getValue(etc)) * huilv + "");
         map.put("eth", Double.parseDouble(getValue(eth)) * huilv + "");
         System.out.println(map);

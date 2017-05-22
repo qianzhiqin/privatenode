@@ -15,9 +15,18 @@ public class Compare {
         double ethYunbiPrice = Double.parseDouble(yunbi.get("eth"));
         double zecYunbiPrice = Double.parseDouble(yunbi.get("zec"));
 
-        double etcPoloniexPrice = Double.parseDouble(yunbi.get("etc"));
-        double ethPoloniexPrice = Double.parseDouble(yunbi.get("eth"));
-        double zecPoloniexPrice = Double.parseDouble(yunbi.get("zec"));
+        double etcPoloniexPrice = Double.parseDouble(poloniex.get("etc"));
+        double ethPoloniexPrice = Double.parseDouble(poloniex.get("eth"));
+        double zecPoloniexPrice = Double.parseDouble(poloniex.get("zec"));
+
+
+        System.out.println("yunbi:" + yunbi);
+        System.out.println("poloniex:" + poloniex);
+        System.out.println("etc:" + (etcPoloniexPrice - etcYunbiPrice));
+        System.out.println("eth:" + (ethPoloniexPrice - ethYunbiPrice));
+        System.out.println("zec:" + (zecPoloniexPrice - zecYunbiPrice));
+
+
         //方案一
         double etcYunbiBuy = init * (1 - 0.001) / etcYunbiPrice;
         double etcPoniexSell = (etcYunbiBuy - 0.01) * etcPoloniexPrice * (1 - 0.0015);
