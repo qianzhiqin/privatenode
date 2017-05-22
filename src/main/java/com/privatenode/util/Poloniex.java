@@ -56,22 +56,41 @@ public class Poloniex {
         System.out.println(val);
         return val;
     }
-    public static Map<String,String> getPoloniex(){
-        Map<String,String> map =new HashMap<>();
+
+    public static Map<String, String> getPoloniex() {
+        double huilv = usdcny();
+        Map<String, String> map = new HashMap<>();
 
         String unixtime = getUnixtime();
         String zec = geturl("ZEC", unixtime);
         String etc = geturl("ETC", unixtime);
         String eth = geturl("ETH", unixtime);
         getValue(zec);
-        map.put("zec",getValue(zec));
-        map.put("etc",getValue(etc));
-        map.put("eth",getValue(eth));
+        map.put("zec", Double.parseDouble(getValue(etc)) * huilv + "");
+        map.put("etc", Double.parseDouble(getValue(etc)) * huilv + "");
+        map.put("eth", Double.parseDouble(getValue(eth)) * huilv + "");
         System.out.println(map);
         return map;
     }
 
+    public static double usdcny() {
+        double result = 0d;
+        try {
+
+            String url = "http://quote.forex.hexun.com/USDCNY.shtml";
+            Document doc = Jsoup.connect(url).ignoreContentType(true).userAgent("Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; WOW64; Trident/6.0; BIDUBrowser 2.x)")
+                    .timeout(30000).followRedirects(true).get();
+            Elements select = doc.select("span#newprice");
+            result = Double.parseDouble(select.text());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
     public static void main(String[] args) {
-       getPoloniex();
+        usdcny();
+//       getPoloniex();
     }
 }
