@@ -25,5 +25,4 @@ public class Compare {
         double ethYunbiSell = ethPoniexBuy * ethYunbiPrice * (1 - 0.001);
         System.out.println("方案1：" + (etcPoniexSell - init));
     }
-
 }
