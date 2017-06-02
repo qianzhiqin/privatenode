@@ -49,9 +49,11 @@ public class CoinController {
         List<String> hashList = new ArrayList<>();
 
         try {
-            String sql = "SELECT coin ,time ,diff ,hash FROM coin WHERE coin='" + coin + "'  ORDER BY TIME DESC LIMIT 300;";
+//            String sql = "SELECT coin ,time ,diff ,hash FROM coin WHERE coin='" + coin + "'  ORDER BY TIME DESC LIMIT 300;";
+            String sql = "SELECT coin ,DATE AS TIME ,ROUND(SUM(diff)/COUNT(1),3) AS diff ,ROUND(SUM(HASH)/COUNT(1) ,3)AS HASH FROM coin WHERE coin='"+coin+"' GROUP BY DATE  ORDER BY DATE DESC LIMIT 300;";
             if("zec".equals(coin)){
-                sql= "SELECT coin ,time ,diff/1000 as diff ,hash/1000 as hash FROM coin WHERE coin='" + coin + "'  ORDER BY TIME DESC LIMIT 300;";
+//                sql= "SELECT coin ,time ,diff/1000 as diff ,hash/1000 as hash FROM coin WHERE coin='" + coin + "'  ORDER BY TIME DESC LIMIT 300;";
+                  sql = "SELECT coin ,DATE AS TIME ,ROUND(SUM(diff)/COUNT(1)/1000,3) AS diff ,ROUND(SUM(HASH)/COUNT(1)/1000,3) AS HASH FROM coin WHERE coin='"+coin+"' GROUP BY DATE  ORDER BY DATE DESC LIMIT 300;";
             }
             ResultSet rs = MysqlHelper.executeQuery(sql, null);
             while (rs.next()) {
